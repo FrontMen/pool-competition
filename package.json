@@ -1,0 +1,44 @@
+{
+  "name": "pool-competition",
+  "version": "1.0.0",
+  "description": "A simple app for a private competition of pool.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "webpack && node-sass src/scss/main.scss dist/main.css",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrontMen/pool-competition.git"
+  },
+  "keywords": [
+    "pool",
+    "app",
+    "competition",
+    "ladder"
+  ],
+  "author": "Justus Romijn <justus@frontmen.nl>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/FrontMen/pool-competition/issues"
+  },
+  "homepage": "https://github.com/FrontMen/pool-competition#readme",
+  "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.15.3",
+    "node-sass": "^4.5.3",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.1",
+    "webpack": "^3.1.0",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-dev-server": "^2.5.1"
+  },
+  "devDependencies": {
+    "babel-preset-stage-2": "^6.24.1"
+  }
+}

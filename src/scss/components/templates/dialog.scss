@@ -1,0 +1,26 @@
+.dialog {
+    &__container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        background: $color-primary;
+    }
+
+    &__title {
+        background: $color-secondary;
+    }
+
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: $base-size * 3;
+    border-radius: $base-size;
+    width: 560px;
+    background: $color-inverse;
+
+    @media screen and (max-width: $break-small) {
+        width: calc(100% - #{$base-size * 4});
+        padding: $base-size;
+    }
+}
