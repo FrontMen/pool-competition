@@ -1,8 +1,21 @@
-// reset
+// Reset
 @import 'reset';
 @import 'sanity';
 
-// theme
+// Theme
 @import 'theme';
 
-@import 'components/templates/dialog';
+// Atoms
+@import 'components/atoms/Button.scss';
+@import 'components/atoms/Header.scss';
+@import 'components/atoms/Label.scss';
+@import 'components/atoms/Select.scss';
+
+// Molecules
+
+// Organisms
+
+// Templates
+@import 'components/templates/Dialog';
+
+// Pages

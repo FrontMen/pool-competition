@@ -1,6 +1,8 @@
 import React from 'react';
-import Header from '../atoms/Header';
 import { session } from '../../services/Session';
+
+import Header from '../atoms/Header';
+import Selector from '../molecules/Selector';
 import Button from '../atoms/Button';
 
 /**
@@ -10,27 +12,35 @@ class SelectAccount extends React.Component {
     constructor() {
         super();
         this.state = {
-            disabled: true
+            disabled: true,
+            options: [
+                { id: 0, value: 'Justus', label: 'Justus' },
+                { id: 1, value: 'Remco', label: 'Remco' },
+                { id: 2, value: 'Jac', label: 'Jac' }
+            ]
         };
     }
 
     onPress(){
-        console.log("WTF");
+        this.props.onSelection(this.state.selected);
     }
 
-    onSelect(value){
-        if (value){
-            session.set("user", value);
-            this.state.disabled = false;
-        }
+    onChange(value){
+        this.setState({ selected: value });
+        this.setState({ disabled: false });
     }
 
     render() {
         return (
             <div>
                 <Header level="1">Select your account</Header>
-                {/*<Selector label="Accounts:" data={data} onSelect={this.onSelect} />*/}
-                <Button priority="primary" label="Continue" onPress={this.onPress} disabled={this.state.disabled}/>
+                <Selector label="Accounts:"
+                          options={this.state.options}
+                          onChange={this.onChange.bind(this)} />
+                <Button priority="primary"
+                        label="Continue"
+                        onPress={this.onPress.bind(this)}
+                        disabled={this.state.disabled}/>
             </div>
         );
     }

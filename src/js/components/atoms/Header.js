@@ -13,8 +13,9 @@ class Header extends React.Component {
 
     render() {
         const HeaderElement = `h${this.props.level}`;
+        const className = `atom-header--${HeaderElement}`;
         return (
-            <HeaderElement>{this.props.children}</HeaderElement>
+            <HeaderElement className={className}>{this.props.children}</HeaderElement>
         );
     }
 }

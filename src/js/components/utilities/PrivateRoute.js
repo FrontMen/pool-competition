@@ -7,7 +7,7 @@ import {
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
-        session.isUser ? (
+        session.isKnownUser() ? (
             <Component {...props}/>
         ) : (
             <Redirect to={{

@@ -1,6 +1,10 @@
 import React from 'react';
 const noop = function(){};
 
+const defaults = {
+    priority: "primary"
+};
+
 /**
  * A counter button: tap the button to increase the count.
  */
@@ -18,8 +22,14 @@ class Button extends React.Component {
     }
 
     render() {
+        const className = `atom-button--${this.props.priority || defaults.priority}`;
+
         return (
-            <button className={this.props.priority} disabled={this.props.disabled} onClick={this.onPress.bind(this)}>{this.props.label}</button>
+            <button className={className}
+                    disabled={this.props.disabled}
+                    onClick={this.onPress.bind(this)}>
+                {this.props.label}
+            </button>
         );
     }
 }
