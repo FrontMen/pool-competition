@@ -1,4 +1,13 @@
 // BASIC SIZING
+@font-face {
+    font-family: 'Deftone';
+    src: url('../assets/fonts/Deftone.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Silk';
+    src: url('../assets/fonts/slkscr.ttf') format('truetype');
+}
+$font-family: 'Silk';
 $base-size: 4px;
 $font-size: $base-size * 4;
 
