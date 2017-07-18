@@ -1,11 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].css",
+    disable: process.env.NODE_ENV === "development"
+});
 
 module.exports = {
     entry: './src/js/main.js',
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin() // Enable HMR
+        new webpack.HotModuleReplacementPlugin(), // Enable HMR
+        extractSass
     ],
 
     output: {
@@ -28,11 +35,23 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            ["latest", { "modules": false }],
+                            ["latest", {"modules": false}],
                             "react"
                         ]
                     }
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: extractSass.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "sass-loader"
+                    }],
+                    //use style-loader in development
+                    fallback: "style-loader"
+                })
             }
         ]
     }
