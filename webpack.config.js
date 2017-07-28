@@ -8,7 +8,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-    entry: './src/js/main.js',
+    entry: './client/js/main.js',
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(), // Enable HMR
@@ -24,7 +24,8 @@ module.exports = {
     devServer: {
         hot: true, // Tell the dev-server we're using HMR
         contentBase: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        publicPath: '/',
+        historyApiFallback: true
     },
     module: {
         rules: [
