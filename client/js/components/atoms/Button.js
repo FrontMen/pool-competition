@@ -22,7 +22,7 @@ class Button extends React.Component {
     }
 
     render() {
-        const className = `atom-button--${this.props.priority || defaults.priority}`;
+        const className = `atom-button atom-button--${this.props.priority || defaults.priority}`;
 
         return (
             <button className={className}

@@ -1,6 +1,15 @@
 .atom-button {
-    &--primary {
+    width: 100%;
+    text-align: center;
+    padding: $size-medium;
+    border: 0;
+    font-size: $font-size * 1.5;
+    font-family: $font-family;
 
+    &--primary {
+        background-color: $color-brand;
+        color: $color-font;
+        border-bottom: $size-base solid $color-brand-darkest;
     }
 
     &--secondary {

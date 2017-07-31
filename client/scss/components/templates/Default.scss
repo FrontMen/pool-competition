@@ -1,0 +1,19 @@
+.tem_default {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    > div {
+        flex-grow: 1;
+    }
+
+    .org__app-header {
+        height: 40px;
+        flex-grow: 0;
+    }
+
+    .org__app-footer {
+        height: 40px;
+        flex-grow: 0;
+    }
+}

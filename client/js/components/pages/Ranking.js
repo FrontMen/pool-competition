@@ -1,5 +1,6 @@
 //import Session from '../../services/Session';
 import React from 'react';
+import Default from "../templates/Default";
 
 
 /**
@@ -14,7 +15,11 @@ class Ranking extends React.Component {
 
     render() {
         return (
-            <h1>Ranking page</h1>
+            <div className="pag__ranking">
+                <Default>
+                    <div>Ranking...</div>
+                </Default>
+            </div>
         );
     }
 }

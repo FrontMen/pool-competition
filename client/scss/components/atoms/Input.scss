@@ -1,3 +1,9 @@
 .mol__input {
-    color: black;
+    background: transparent;
+    color: $color-font;
+    border: 0;
+    border-bottom: $size-base solid $color-accent-light;
+    width: 100%;
+    padding: $size-small;
+    font-family: $font-family;
 }

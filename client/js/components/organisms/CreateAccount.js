@@ -1,5 +1,4 @@
 import React from 'react';
-import { session } from '../../services/Session';
 
 import Header from '../atoms/Header';
 import EmailField from '../molecules/EmailField';

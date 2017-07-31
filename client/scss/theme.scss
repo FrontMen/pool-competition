@@ -1,4 +1,3 @@
-// BASIC SIZING
 @font-face {
     font-family: 'Deftone';
     src: url('../assets/fonts/Deftone.ttf') format('truetype');
@@ -7,9 +6,17 @@
     font-family: 'Silk';
     src: url('../assets/fonts/slkscr.ttf') format('truetype');
 }
+
+// SIZES
+$size-base: 4px;
+$size-bar: $size-base * 12;
+$size-small: $size-base * 2;
+$size-medium: $size-base * 3;
+$size-large: $size-base * 6;
+
+
 $font-family: 'Silk';
-$base-size: 4px;
-$font-size: $base-size * 4;
+$font-size: $size-base * 4;
 
 // COLOR SCHEME
 $color-brand: #067514;
@@ -18,8 +25,8 @@ $color-brand-darkest: #003006;
 
 $color-font: #e9e9e9;
 
-$color-support-1: #975E08;
-$color-support-2: #5C0662;
+$color-accent-light: #975E08;
+$color-accent-dark: #5C0662;
 
 
 

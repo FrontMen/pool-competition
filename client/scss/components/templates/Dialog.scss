@@ -9,14 +9,14 @@
     &__content {
         box-sizing: border-box;
         margin: 0 auto;
-        padding: $base-size * 3;
-        border-radius: $base-size;
+        padding: $size-medium;
+        border-radius: $size-base;
         width: 480px;
         background: $color-brand-dark;
 
         @media screen and (max-width: $break-small) {
-            width: calc(100% - #{$base-size * 4});
-            padding: $base-size;
+            width: calc(100% - #{$size-medium * 2});
+            padding: $size-medium;
         }
     }
 }
