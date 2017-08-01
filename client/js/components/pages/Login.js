@@ -2,7 +2,8 @@ import React from 'react';
 import Dialog from '../templates/Dialog';
 import LoginAccount from '../organisms/LoginAccount';
 import {session} from '../../services/Session';
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+
 
 class Registration extends React.Component {
     constructor() {
