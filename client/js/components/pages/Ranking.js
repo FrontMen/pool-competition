@@ -1,11 +1,6 @@
-//import Session from '../../services/Session';
 import React from 'react';
 import Default from "../templates/Default";
 
-
-/**
- * A counter button: tap the button to increase the count.
- */
 class Ranking extends React.Component {
     constructor() {
         super();

@@ -19,7 +19,7 @@ class Input extends React.Component {
             <input type={ this.type }
                    value={ this.state.value }
                    onChange={this.onChange.bind(this)}
-                   className={"mol__input mol__paragraph--" + this.type } />
+                   className={"ato__input ato__paragraph--" + this.type } />
         );
     }
 }

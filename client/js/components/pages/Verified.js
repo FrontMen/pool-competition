@@ -1,22 +1,30 @@
 import React from 'react';
 import Dialog from '../templates/Dialog';
-import CreateAccount from '../organisms/CreateAccount';
-import {Redirect} from 'react-router-dom';
-//import {session} from '../../services/Session';
+import Paragraph from '../atoms/Paragraph';
+import Header from '../atoms/Header';
+import Button from '../atoms/Button';
 
-/**
- * A counter button: tap the button to increase the count.
- */
 class Registration extends React.Component {
     constructor() {
         super();
         this.state = {};
     }
 
+    onContinue() {
+        console.log("going to ranking");
+    }
+
     render() {
         return (
             <div className="pag__verified">
-                Your account has been verified!
+                <Dialog>
+                    <Header level="1">Activated.</Header>
+                    <Paragraph>
+                        Your account has been verified and is now active!
+                    </Paragraph>
+                    <Button onPress={ this.onContinue.bind(this)} label="OK thanks, got it!" />
+                </Dialog>
+
             </div>
 
         )

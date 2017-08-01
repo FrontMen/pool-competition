@@ -11,7 +11,7 @@ class Paragraph extends React.Component {
 
     render() {
         return (
-            <p className={"mol__paragraph mol__paragraph--" + this.type }>
+            <p className={"ato__paragraph ato__paragraph--" + this.type }>
                 { this.props.children }
             </p>
         );

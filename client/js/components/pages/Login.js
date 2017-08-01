@@ -4,10 +4,6 @@ import LoginAccount from '../organisms/LoginAccount';
 import {session} from '../../services/Session';
 import {Redirect} from 'react-router-dom';
 
-
-/**
- * A counter button: tap the button to increase the count.
- */
 class Registration extends React.Component {
     constructor() {
         super();

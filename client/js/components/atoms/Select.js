@@ -3,9 +3,7 @@ import React from 'react';
 const defaults = {
     emptyLabel: "Make a selection"
 };
-/**
- * A counter button: tap the button to increase the count.
- */
+
 class Select extends React.Component {
     constructor() {
         super();
@@ -22,7 +20,7 @@ class Select extends React.Component {
 
     render() {
         let emptyLabel = this.props.emptyLabel || defaults.emptyLabel;
-        const className = `atom-select`;
+        const className = `ato__select`;
         let hasSelectedItem = false;
 
         let items = this.props.options.map((item) => {

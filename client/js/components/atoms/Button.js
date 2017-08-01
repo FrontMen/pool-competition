@@ -5,9 +5,6 @@ const defaults = {
     priority: "primary"
 };
 
-/**
- * A counter button: tap the button to increase the count.
- */
 class Button extends React.Component {
     constructor() {
         super();
@@ -22,7 +19,7 @@ class Button extends React.Component {
     }
 
     render() {
-        const className = `atom-button atom-button--${this.props.priority || defaults.priority}`;
+        const className = `ato__button ato__button--${this.props.priority || defaults.priority}`;
 
         return (
             <button className={className}

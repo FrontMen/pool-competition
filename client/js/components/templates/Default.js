@@ -2,9 +2,6 @@ import React from 'react';
 import AppHeader from '../organisms/AppHeader';
 import AppFooter from '../organisms/AppFooter';
 
-/**
- * A counter button: tap the button to increase the count.
- */
 class Default extends React.Component {
     constructor() {
         super();

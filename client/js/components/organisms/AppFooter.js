@@ -1,8 +1,5 @@
 import React from 'react';
 
-/**
- * A counter button: tap the button to increase the count.
- */
 class AppFooter extends React.Component {
     constructor() {
         super();

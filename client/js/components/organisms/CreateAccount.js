@@ -7,9 +7,6 @@ import Button from '../atoms/Button';
 
 import xhr from "xhr";
 
-/**
- * A counter button: tap the button to increase the count.
- */
 class CreateAccount extends React.Component {
     constructor() {
         super();

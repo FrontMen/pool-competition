@@ -4,9 +4,6 @@ import EmailField from '../molecules/EmailField';
 import PasswordField from '../molecules/PasswordField';
 import Button from '../atoms/Button';
 
-/**
- * A counter button: tap the button to increase the count.
- */
 class SelectAccount extends React.Component {
     constructor() {
         super();

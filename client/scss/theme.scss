@@ -6,6 +6,10 @@
     font-family: 'Silk';
     src: url('../assets/fonts/slkscr.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'Agane';
+    src: url('../assets/fonts/agane-45.ttf') format('truetype');
+}
 
 // SIZES
 $size-base: 4px;
@@ -15,8 +19,10 @@ $size-medium: $size-base * 3;
 $size-large: $size-base * 6;
 
 
-$font-family: 'Silk';
+$font-primary: 'Silk', monospace;
+$font-secondary: 'Agane', 'Arial', sans-serif;
 $font-size: $size-base * 4;
+$font-line: $size-base * 5;
 
 // COLOR SCHEME
 $color-brand: #067514;

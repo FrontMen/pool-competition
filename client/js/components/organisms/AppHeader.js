@@ -1,8 +1,5 @@
 import React from 'react';
 
-/**
- * A counter button: tap the button to increase the count.
- */
 class AppHeader extends React.Component {
     constructor() {
         super();

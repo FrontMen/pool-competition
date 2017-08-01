@@ -1,9 +1,5 @@
 import React from 'react';
 
-
-/**
- * A counter button: tap the button to increase the count.
- */
 class Label extends React.Component {
     constructor() {
         super();
@@ -11,7 +7,7 @@ class Label extends React.Component {
     }
 
     render() {
-        const className = `atom-label`;
+        const className = `ato__label`;
         return (
             <label className={className}>{this.props.children}</label>
         );
