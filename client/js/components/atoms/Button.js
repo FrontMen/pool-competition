@@ -1,5 +1,5 @@
 import React from 'react';
-const noop = function(){};
+import { withRouter } from 'react-router-dom'
 
 const defaults = {
     priority: "primary"
@@ -12,13 +12,16 @@ class Button extends React.Component {
     }
 
     onPress(evt){
-        evt.preventDefault();
-        if (this.props.onPress){
-            this.props.onPress();
+        if (this.props.link) {
+            this.props.history.push(this.props.link);
+        } else {
+            evt.preventDefault();
+            this.props.onPress && this.props.onPress();
         }
     }
 
     render() {
+
         const className = `ato__button ato__button--${this.props.priority || defaults.priority}`;
 
         return (
@@ -30,4 +33,4 @@ class Button extends React.Component {
         );
     }
 }
-export default Button;
+export default withRouter(Button);

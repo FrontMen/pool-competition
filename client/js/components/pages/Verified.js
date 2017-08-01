@@ -22,7 +22,7 @@ class Registration extends React.Component {
                     <Paragraph>
                         Your account has been verified and is now active!
                     </Paragraph>
-                    <Button onPress={ this.onContinue.bind(this)} label="OK thanks, got it!" />
+                    <Button link="/" label="OK thanks, got it!" />
                 </Dialog>
 
             </div>
