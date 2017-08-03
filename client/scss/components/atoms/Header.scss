@@ -1,6 +1,7 @@
 .ato__header {
+    font-family: $font-primary;
+    color: #fff;
     &--h1 {
-        font-family: $font-primary;
         text-align: center;
         font-size: $font-size * 2;
         color: #fff;
@@ -11,6 +12,7 @@
     }
 
     &--h3 {
-
+        font-size: $font-size * 1.25;
+        color: #fff;
     }
 }

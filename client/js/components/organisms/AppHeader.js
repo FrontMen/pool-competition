@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../atoms/Header';
 
 class AppHeader extends React.Component {
     constructor() {
@@ -9,7 +10,7 @@ class AppHeader extends React.Component {
     render() {
         return (
             <div className="org__app-header">
-                HEADER
+                <Header level="1">{this.props.title}</Header>
             </div>
         );
     }

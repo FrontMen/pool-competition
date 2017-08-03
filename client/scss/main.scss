@@ -6,20 +6,25 @@
 @import 'theme';
 
 // Atoms
-@import 'components/atoms/Button.scss';
-@import 'components/atoms/Header.scss';
-@import 'components/atoms/Label.scss';
-@import 'components/atoms/Select.scss';
-@import 'components/atoms/Input.scss';
-@import 'components/atoms/Paragraph.scss';
+@import 'components/atoms/Anchor';
+@import 'components/atoms/Button';
+@import 'components/atoms/Header';
+@import 'components/atoms/Label';
+@import 'components/atoms/Select';
+@import 'components/atoms/Input';
+@import 'components/atoms/Paragraph';
 
 // Molecules
-@import 'components/molecules/TextField.scss';
-@import 'components/molecules/PasswordField.scss';
-@import 'components/molecules/EmailField.scss';
+@import 'components/molecules/TextField';
+@import 'components/molecules/PasswordField';
+@import 'components/molecules/EmailField';
+@import 'components/molecules/RankEntry';
 
 
 // Organisms
+@import 'components/organisms/AppHeader';
+@import 'components/organisms/AppFooter';
+@import 'components/organisms/Ranking';
 
 // Templates
 @import 'components/templates/Dialog';

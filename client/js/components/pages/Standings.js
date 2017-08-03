@@ -1,7 +1,8 @@
 import React from 'react';
 import Default from "../templates/Default";
+import Ranking from "../organisms/Ranking";
 
-class Ranking extends React.Component {
+class Standings extends React.Component {
     constructor() {
         super();
 
@@ -10,12 +11,12 @@ class Ranking extends React.Component {
 
     render() {
         return (
-            <div className="pag__ranking">
-                <Default>
-                    <div>Ranking...</div>
+            <div className="pag__standings">
+                <Default title="Standings">
+                    <Ranking />
                 </Default>
             </div>
         );
     }
 }
-export default Ranking;
+export default Standings;

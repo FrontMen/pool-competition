@@ -11,7 +11,7 @@ class Default extends React.Component {
     render() {
         return (
             <div className="tem_default">
-                <AppHeader />
+                <AppHeader title={this.props.title} />
                     { this.props.children }
                 <AppFooter />
             </div>

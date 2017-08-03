@@ -2,7 +2,7 @@ import React from 'react';
 import Dialog from '../templates/Dialog';
 import LoginAccount from '../organisms/LoginAccount';
 import {session} from '../../services/Session';
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 
 class Registration extends React.Component {
@@ -35,7 +35,6 @@ class Registration extends React.Component {
             <div className="pag__login">
                 <Dialog>
                     <LoginAccount onLogin={this.onLogin.bind(this)}/>
-                    <Link to="/registration">Create an account</Link>
                 </Dialog>
             </div>
 

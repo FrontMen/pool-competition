@@ -1,4 +1,6 @@
 import React from 'react';
+import Anchor from '../atoms/Anchor';
+import Paragraph from '../atoms/Paragraph';
 import Header from '../atoms/Header';
 import EmailField from '../molecules/EmailField';
 import PasswordField from '../molecules/PasswordField';
@@ -26,6 +28,8 @@ class SelectAccount extends React.Component {
                         label="Continue"
                         onPress={this.onPress.bind(this)}
                         disabled={this.state.disabled}/>
+
+                <Paragraph><Anchor to="/registration">Or create an account</Anchor></Paragraph>
             </div>
         );
     }

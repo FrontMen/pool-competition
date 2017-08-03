@@ -8,9 +8,7 @@ class AppFooter extends React.Component {
 
     render() {
         return (
-            <div className="org__app-footer">
-                FOOTER
-            </div>
+            <div className="org__app-footer"></div>
         );
     }
 }

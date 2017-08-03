@@ -1,5 +1,5 @@
 import PrivateRoute from './components/utilities/PrivateRoute';
-import Ranking from './components/pages/Ranking';
+import Ranking from './components/pages/Standings';
 import Registration from './components/pages/Registration';
 import Registered from './components/pages/Registered';
 import Verified from './components/pages/Verified';

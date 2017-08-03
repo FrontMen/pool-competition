@@ -3,6 +3,7 @@ import Dialog from "../templates/Dialog";
 import Header from "../atoms/Header";
 import Paragraph from "../atoms/Paragraph";
 
+// TODO add gif to this page :)
 class Registered extends React.Component {
     constructor() {
         super();

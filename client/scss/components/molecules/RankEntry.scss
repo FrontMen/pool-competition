@@ -1,0 +1,58 @@
+.mol__rank-entry {
+    padding: $size-small;
+    border: $size-tiny solid $color-dark;
+
+    background: linear-gradient(to bottom,
+            $color-brand-darkest,
+            darken($color-brand-darkest, 5%)
+        );
+
+    &:not(:first-child) {
+        border-top: 0;
+    }
+    > h4 {
+        display: inline-block;
+    }
+
+    &:before {
+        display: inline-block;
+        background: $color-dark;
+        content: counter(ranking-counter);
+        counter-increment: ranking-counter;
+        font-family: 'Silk';
+        color: $color-font;
+        vertical-align: middle;
+        text-align: center;
+        line-height: $size-large;
+        height: $size-large;
+        width: $size-large;
+        margin-right: $size-small;
+        border-radius: $size-medium;
+        border: $size-tiny solid white;
+    }
+
+    &--first {
+        &:before {
+            background: linear-gradient(to bottom,
+                    #d5a500,
+                    darken(#d5a500, 9%)
+            );
+        }
+    }
+    &--second {
+        &:before {
+            background: linear-gradient(to bottom,
+                    #b7b7b7,
+                    darken(#b7b7b7, 9%)
+            );
+        }
+    }
+    &--third {
+        &:before {
+            background: linear-gradient(to bottom,
+                    #c17419,
+                    darken(#c17419, 9%)
+            );
+        }
+    }
+}
