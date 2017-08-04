@@ -1,7 +1,6 @@
 'use strict';
 import setup from "../../credentials/mail.js";
 const nodemailer = require('nodemailer');
-const bcrypt = require("bcryptjs");
 
 let transporter = nodemailer.createTransport(setup);
 

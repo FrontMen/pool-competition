@@ -18,9 +18,14 @@ class CreateAccount extends React.Component {
     }
 
     onPress(){
-        xhr.post('http://localhost:3000/register-user', {
+        xhr.post('http://localhost:3000/api/users', {
             headers: {
                 "Access-Control-Allow-Origin": "*"
+            },
+            json: true,
+            body: {
+                email: this.state.email,
+                password: this.state.password
             }
         }, (err, resp) => {
             // TODO validate and error handling
@@ -38,7 +43,6 @@ class CreateAccount extends React.Component {
         console.log("validation");
         if (this.state.email && this.state.password && this.state.disabled){
             this.setState({ disabled: false });
-            // SEND AJAX REQUEST
         }
     }
 

@@ -9,10 +9,11 @@ npm install
 
 ## Usage
 
-Start the development server with this command:
+Start the development (frontend/backend) server with this command:
 
 ```
-npm start
+npm run dev-client
+npm run dev-server
 ```
 
 ## Compile

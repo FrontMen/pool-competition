@@ -8,7 +8,8 @@ let UserSchema = new Schema({
         type: String
     },
     email: {
-        type: String
+        type: String,
+        required: true
     },
     verified: {
         type: Boolean,
@@ -17,18 +18,19 @@ let UserSchema = new Schema({
     verificationHash: {
         type: String
     },
-    password: {
-        type: String
+    verificationExpiry: {
+        type: <Number></Number>
     },
-    salt: {
-        type: String
+    password: {
+        type: String,
+        required: true
     },
     rank: {
         type: Number
     },
     challengedBy: {
         type: Schema.Types.ObjectId,
-        ref: 'Story'
+        ref: 'User'
     },
 });
 
