@@ -19,7 +19,7 @@ let UserSchema = new Schema({
         type: String
     },
     verificationExpiry: {
-        type: <Number></Number>
+        type: Number
     },
     password: {
         type: String,
@@ -32,6 +32,12 @@ let UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    accessToken: {
+        type: String
+    },
+    accessTokenExpiry: {
+        type: Number
+    }
 });
 
 module.exports = mongoose.model('Users', UserSchema);
