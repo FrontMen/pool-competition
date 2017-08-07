@@ -10,10 +10,6 @@ class Session {
         this._store();
     }
 
-    isKnownUser(){
-        return true;
-    }
-
     get(key){
         return this.data[key];
     }

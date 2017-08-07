@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "webpack",
     "dev-client": "NODE_ENV=development node_modules/.bin/webpack-dev-server",
-    "dev-server": "nodemon server/server.js",
+    "dev-server": "nodemon --config nodemon.config.json server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

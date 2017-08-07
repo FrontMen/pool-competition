@@ -2,20 +2,22 @@ const RandomHash = require('random-hash').RandomHash;
 const bcrypt = require("bcryptjs");
 const mailer = require("../utils/mailer");
 const auth = require("../utils/Auth");
-
-let User = require('../models/User');
+const User = require('../models/User');
 const generateHash = new RandomHash({
     length: 12,
     charset: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_'
 });
-
-function createUser(email, password, res) {
+function createHash(password){
     const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(password, salt);
+    return bcrypt.hashSync(password, salt);
+}
+
+function createUser(email, username, password, res) {
     const verificationExpiry = Date.now() + (1000 * 60 * 60 * 48);
     User.create({
         email: email,
-        password: hash,
+        username: username,
+        password: createHash(password),
         verificationHash: generateHash(),
         verificationExpiry: verificationExpiry
     }, function(err, user) {
@@ -23,31 +25,24 @@ function createUser(email, password, res) {
             email: user.email,
             hash: user.verificationHash
         });
-        res.status(200).send();
+        res.status(204).send();
     });
-}
-
-function verifyUser(req, res, user) {
-    user.verified = true;
-    user.verificationExpiry = undefined;
-    user.verificationHash = undefined;
-    user.save(function(err, user) {
-        console.log(user);
-        req.session.user = user.email;
-        res.status(200).send();
-    })
 }
 
 module.exports = function(router) {
     router.post('/users', function(req, res) {
-        User.find({email: req.body.email}).count(function(err, count) {
-            if(count === 0) {
-                createUser(req.body.email, req.body.password, res);
+        User.findOne({$or:[
+                {'username': req.body.username},
+                {'email': req.body.email}
+            ]}).count(function(err, user) {
+            if(!user) {
+                createUser(req.body.email, req.body.username, req.body.password, res);
             } else {
+                let field = req.body.username === user.username ? "Username" : "Email";
                 res.status(409).send({
                     error: {
                         email: true,
-                        message: "Email already taken."
+                        message: `${field} already taken.`
                     }
                 });
             }
@@ -55,33 +50,50 @@ module.exports = function(router) {
 
     });
     router.get('/users', auth.user, function(req, res) {
-        User.find({}, function(err, users) {
+        User.find({ }, function(err, users) {
             return res.status(200).send(users);
         });
     });
 
-    router.get('/verify/:verificationHash', function(req, res) {
-        User.findOne({verificationHash: req.params.verificationHash}, function(err, match) {
-            if(match && match.verificationExpiry > Date.now()) {
-                verifyUser(req, res, match);
-            } else {
-                res.status(404).send({
-                    error: {
-                        hash: true,
-                        message: "No user found for this url."
+    router.get('/users/me', auth.user, function(req, res) {
+        User.findOne({ username: req.params.username }, function(user){
+            if (user.username === req.session.username){
+                res.status(200).send({
+                    username: user.username,
+                    email: user.email
+                });
+            }
+        })
+    });
+
+    router.put('/users/me', auth.user, function(req, res) {
+        User.findOne({username: req.session.username}, function(user) {
+            if(bcrypt.compareSync(req.body.password, user.password)) {
+                let changes = {};
+                Object.keys(req.body).forEach((key) => {
+                    if(key !== "email" && key !== "password") {
+                        if(key === "newPassword") {
+                            changes.password = createHash(password);
+                        } else {
+                            changes[key] = req.body[key];
+                        }
                     }
+                });
+                user.update(changes, function() {
+                    res.send(204);
                 });
             }
         });
     });
 
-    router.post('/users/login', function(req, res) {
-        User.findOne({ email: req.params.email, password: req.params.password }, function(err, match){
-            if (user){
-                req.session.user = user.email;
-                res.status(200).send();
+    router.delete('/users/me', auth.user, function(req, res) {
+        User.findOne({username: req.session.username}, function(user){
+            if (bcrypt.compareSync(req.body.password, user.password)) {
+                User.remove({ username: req.session.username }, function(){
+                    res.send(204);
+                });
             }
-        })
+        });
     });
 
     return router;

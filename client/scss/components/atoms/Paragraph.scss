@@ -4,4 +4,10 @@
     font-size: $font-size;
     line-height: $font-line;
     margin: $size-medium 0;
+
+    &--error {
+        background-color: $color-error;
+        padding: $size-tiny;
+        text-align: center;
+    }
 }

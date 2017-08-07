@@ -9,6 +9,10 @@ class Standings extends React.Component {
         this.state = {};
     }
 
+    componentWillMount(){
+
+    }
+
     render() {
         return (
             <div className="pag__standings">

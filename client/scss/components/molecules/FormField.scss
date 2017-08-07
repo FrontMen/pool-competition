@@ -1,0 +1,13 @@
+.mol__form-field {
+    margin: $size-medium 0;
+
+    .ato__paragraph--error {
+        display: none;
+    }
+
+    &--error {
+        .ato__paragraph--error {
+            display: block;
+        }
+    }
+}

@@ -9,6 +9,7 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
     entry: './client/js/main.js',
+    devtool: 'source-map',
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(), // Enable HMR
