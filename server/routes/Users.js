@@ -31,23 +31,32 @@ function createUser(email, username, password, res) {
 
 module.exports = function(router) {
     router.post('/users', function(req, res) {
-        User.findOne({$or:[
-                {'username': req.body.username},
-                {'email': req.body.email}
-            ]}).count(function(err, user) {
-            if(!user) {
-                createUser(req.body.email, req.body.username, req.body.password, res);
-            } else {
-                let field = req.body.username === user.username ? "Username" : "Email";
-                res.status(409).send({
-                    error: {
-                        email: true,
-                        message: `${field} already taken.`
-                    }
-                });
-            }
-        })
+        let username = req.body.username || false,
+            email = req.body.email || false,
+            password = req.body.password || false;
 
+        if (!username || !email || !password){
+            res.status(400).send({
+                description: "Missing data."
+            });
+
+            return;
+        }
+
+        User.findOne({$or:[
+                {'username': username},
+                {'email': email}
+            ]}, function(err, user) {
+            if(user) {
+                console.log(username, user);
+                let field = username === user.username ? "Username" : "Email";
+                res.status(409).send({
+                    description: `${field} already taken.`
+                });
+            } else {
+                createUser(email, username, password, res);
+            }
+        });
     });
     router.get('/users', auth.user, function(req, res) {
         User.find({ }, function(err, users) {

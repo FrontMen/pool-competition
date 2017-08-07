@@ -10,8 +10,9 @@ class Input extends React.Component {
     }
 
     onChange(event){
-        this.setState({value: event.target.value});
-        this.props.onChange && this.props.onChange(this.state.value);
+        let value = event.target.value;
+        this.setState({value: value});
+        this.props.onChange && this.props.onChange(value);
     }
 
     render() {

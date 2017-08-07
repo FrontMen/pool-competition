@@ -18,10 +18,7 @@ module.exports = function(router) {
                 verifyUser(req, res, match);
             } else {
                 res.status(404).send({
-                    error: {
-                        hash: true,
-                        message: "No user found for this url."
-                    }
+                    description: "No user found for this url."
                 });
             }
         });

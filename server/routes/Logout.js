@@ -7,9 +7,7 @@ module.exports = function(router) {
             res.status(200).send();
         } else {
             res.status(409).send({
-                error: {
-                    message: "No active session."
-                }
+                description: "No active session."
             });
         }
     });

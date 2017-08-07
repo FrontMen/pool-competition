@@ -1,8 +1,11 @@
 import React from 'react';
-
+import Username from '../../config/forms/Username';
+import Email from '../../config/forms/Email';
+import Password from '../../config/forms/Password';
 import Header from '../atoms/Header';
 import FormField from '../molecules/FormField';
 import Button from '../atoms/Button';
+import StatusCodes from '../../helpers/StatusCodes';
 
 import xhr from "xhr";
 
@@ -12,52 +15,9 @@ class CreateAccount extends React.Component {
         this.state = {
             disabled: false,
             fields: {
-                username: {
-                    label: "Username",
-                    type: "text",
-                    value: "",
-                    error: true,
-                    validations: [
-                        {
-                            rule: function(val){
-                                return val.length > 2
-                            },
-                            message: "Username should be at least 3 characters."
-                        }
-                    ]
-                },
-                email: {
-                    label: "Email",
-                    type: "email",
-                    value: "",
-                    error: true,
-                    validations: [
-                        {
-                            rule: function(val){
-                                return val.length > 2
-                            },
-                            message: "Email should be at least 3 characters."
-                        },
-                        {
-                            rule: function(val){
-                                return val.indexOf('@') !== -1;
-                            },
-                            message: "No '@' symbol. Please try harder!"
-                        }
-                    ]
-                },
-                password: {
-                    label: "Password",
-                    type: "password",
-                    value: "",
-                    error: true,
-                    validations: [{
-                        rule: function(val){
-                            return val.length > 5
-                        },
-                        message: "Password should contain at least 6 characters."
-                    }]
-                }
+                username: Username,
+                email: Email,
+                password: Password
             },
             showErrors: false
         };
@@ -82,25 +42,29 @@ class CreateAccount extends React.Component {
         let fields = Object.keys(this.state.fields);
         if (!fields.some(field => this.state.fields[field].error)) {
             console.log("VALID FORM");
-            // xhr.post('http://localhost:3000/api/users', {
-            //     headers: {
-            //         "Access-Control-Allow-Origin": "*"
-            //     },
-            //     json: true,
-            //     body: {
-            //         username: this.state.username.value
-            //     }
-            // }, (err, resp) => {
-            //     // TODO validate and error handling
-            //     this.props.onCreate && this.props.onCreate();
-            // });
-        }
 
+            xhr.post('http://localhost:3000/api/users', {
+                // headers: {
+                //     "Access-Control-Allow-Origin": "*"
+                // },
+                json: true,
+                body: {
+                    username: this.state.fields.username.value,
+                    email: this.state.fields.email.value,
+                    password: this.state.fields.password.value,
+                }
+            }, (err, resp, data) => {
+                if (StatusCodes.happy(resp.statusCode)){
+                    this.props.onCreate && this.props.onCreate();
+                } else if (data && data.description){
+                    console.log(data.description);
+                }
+            });
+        }
     }
 
 
     render() {
-        console.log(this.state.fields.email);
         return (
             <div className="org__create-account">
                 <Header level="1">Create account</Header>
