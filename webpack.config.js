@@ -56,8 +56,12 @@ module.exports = {
                 })
             },
             {
-                test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+                test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
                 loader: 'url-loader'
+            },
+            {
+                test: /\.svg/,
+                loader: 'file-loader'
             }
         ]
     }

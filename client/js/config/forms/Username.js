@@ -1,5 +1,6 @@
 module.exports = {
     label: "Username",
+        name: "username",
         type: "text",
         value: "",
         error: true,

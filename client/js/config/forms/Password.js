@@ -1,5 +1,6 @@
 module.exports = {
     label: "Password",
+    name: "password",
     type: "password",
     value: "",
     error: true,

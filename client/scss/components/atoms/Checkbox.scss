@@ -1,0 +1,28 @@
+.ato__checkbox {
+    height: $font-line;
+    width: $font-line;
+    position: relative;
+
+    &__checkbox {
+        display: none;
+
+        &:checked {
+            & + span {
+                background-image: url("../assets/svg/checkmark.svg");
+                background-size: $font-line - $size-small $font-line - $size-small;
+            }
+        }
+    }
+
+    &__visual {
+        position: absolute;
+        border: $size-tiny solid $color-accent-light;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+    }
+
+}

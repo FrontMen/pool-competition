@@ -1,6 +1,7 @@
 .mol__form-field {
     margin: $size-medium 0;
 
+
     .ato__paragraph--error {
         display: none;
     }
@@ -8,6 +9,19 @@
     &--error {
         .ato__paragraph--error {
             display: block;
+        }
+    }
+
+    &--checkbox {
+        .ato__label {
+            display: flex;
+        }
+        .ato__header {
+            flex-grow: 1;
+        }
+        .ato__input {
+            flex-grow: 0;
+            width: auto;
         }
     }
 }
