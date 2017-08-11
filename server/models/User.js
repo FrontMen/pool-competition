@@ -25,13 +25,6 @@ let UserSchema = new Schema({
         type: String,
         required: true
     },
-    rank: {
-        type: Number
-    },
-    challengedBy: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
     accessToken: {
         type: String
     },

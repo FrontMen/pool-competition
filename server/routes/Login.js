@@ -9,7 +9,7 @@ module.exports = function(router) {
                     if ( req.body.remember ) {
                         req.session.cookie.maxAge = 2592000000;
                     }
-                    req.session.email = user.email;
+                    req.session.userId = user._id;
                     res.status(200).send();
                 });
             }

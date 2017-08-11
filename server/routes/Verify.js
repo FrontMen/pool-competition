@@ -13,7 +13,9 @@ function verifyUser(req, res, user) {
 
 module.exports = function(router) {
     router.get('/verify/:verificationHash', function(req, res) {
+        console.log(req.params);
         User.findOne({verificationHash: req.params.verificationHash}, function(err, match) {
+
             if(match && match.verificationExpiry > Date.now()) {
                 verifyUser(req, res, match);
             } else {

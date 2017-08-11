@@ -48,7 +48,6 @@ module.exports = function(router) {
                 {'email': email}
             ]}, function(err, user) {
             if(user) {
-                console.log(username, user);
                 let field = username === user.username ? "Username" : "Email";
                 res.status(409).send({
                     description: `${field} already taken.`
@@ -59,14 +58,14 @@ module.exports = function(router) {
         });
     });
     router.get('/users', auth.user, function(req, res) {
-        User.find({ }, function(err, users) {
+        User.find({}, function(err, users) {
             return res.status(200).send(users);
         });
     });
 
     router.get('/users/me', auth.user, function(req, res) {
-        User.findOne({ username: req.params.username }, function(user){
-            if (user.username === req.session.username){
+        User.findOne({ _id: req.session._id}, function(user){
+            if (user){
                 res.status(200).send({
                     username: user.username,
                     email: user.email
@@ -76,7 +75,7 @@ module.exports = function(router) {
     });
 
     router.put('/users/me', auth.user, function(req, res) {
-        User.findOne({username: req.session.username}, function(user) {
+        User.findOne({_id: req.session._id}, function(user) {
             if(bcrypt.compareSync(req.body.password, user.password)) {
                 let changes = {};
                 Object.keys(req.body).forEach((key) => {
@@ -96,9 +95,9 @@ module.exports = function(router) {
     });
 
     router.delete('/users/me', auth.user, function(req, res) {
-        User.findOne({username: req.session.username}, function(user){
+        User.findOne({_id: req.session._id}, function(user){
             if (bcrypt.compareSync(req.body.password, user.password)) {
-                User.remove({ username: req.session.username }, function(){
+                User.remove({ _id: req.session.id }, function(){
                     res.send(204);
                 });
             }

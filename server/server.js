@@ -9,15 +9,15 @@ const app = express(),
     port = process.env.PORT || 3000;
 
 app.use(session({
-    cookie: {
-        secure: false
-    },
-    secret: expressSessionSecret,
-    resave: false,
-    saveUninitialized: true,
-    unset: "destroy",
-    rolling: true
-}));
+        cookie: {
+            secure: false
+        },
+        secret: expressSessionSecret,
+        resave: true,
+        name: "poolCompetition",
+        saveUninitialized: true,
+        rolling: true
+    }));
 
 let router = express.Router();
 
@@ -42,6 +42,7 @@ router = require('./routes/Logout')(router);
 router = require('./routes/Verify')(router);
 router = require('./routes/IsUser')(router);
 router = require('./routes/Users')(router);
+router = require('./routes/Games')(router);
 app.use('/api', router);
 
 app.listen(port);

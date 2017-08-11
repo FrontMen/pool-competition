@@ -9,6 +9,7 @@ import xhr from "xhr";
 import Username from '../../config/forms/Username';
 import Password from '../../config/forms/Password';
 import RememberMe from '../../config/forms/RememberMe';
+import StatusCodes from '../../helpers/StatusCodes';
 
 class SelectAccount extends React.Component {
     constructor() {
@@ -51,7 +52,7 @@ class SelectAccount extends React.Component {
                 }
             }, (err, resp, data) => {
                 if (StatusCodes.happy(resp.statusCode)){
-                    this.props.onCreate && this.props.onCreate();
+                    this.props.onLogin && this.props.onLogin();
                 } else if (data && data.description){
                     console.log(data.description);
                 }

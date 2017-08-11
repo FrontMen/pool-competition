@@ -8,4 +8,4 @@ module.exports = {
     failure: function(code){
         return code > 499 && code < 600;
     }
-}
+};
