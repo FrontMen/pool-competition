@@ -10,8 +10,14 @@ module.exports = function(router) {
                         req.session.cookie.maxAge = 2592000000;
                     }
                     req.session.userId = user._id;
-                    res.status(200).send();
+                    console.log("LOGIN:", req.session);
+                    req.session.save(function(err) {
+                        console.log("SAVE:",err);
+                        res.status(204).send();
+                    });
                 });
+            } else {
+                res.status(401).send();
             }
         })
     });

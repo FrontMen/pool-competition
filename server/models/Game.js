@@ -2,41 +2,47 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 let GameSchema = new Schema({
-    title: {
-        type: String
-    },
-    creator: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users'
-    },
-    ranking: [{
-        position: Number,
-        user: {
+        title: {
+            type: String
+        },
+        creator: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Users'
         },
-        challenge: {
-            by: {
+        ranking: [{
+            position: Number,
+            user: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Users'
             },
-            expiration: Number
+            challenge: {
+                by: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Users'
+                },
+                expiration: Number
+            }
+        }],
+        expiration: {
+            type: Number
         }
-    }],
-    expiration: {
-        type: Number
-    }
-});
-GameSchema.pre("validate", function(next) {
-    console.log("VALIDATIONSSSSS");
-    let doc = this;
-    console.log(this.ranking.length);
+    },
+    {
+        toObject: { virtuals: true },
+        toJSON: { virtuals: true }
+    });
 
+GameSchema.virtual('playerCount')
+    .get((function() {
+        return this.ranking.length;
+    }));
+
+GameSchema.pre("validate", function(next) {
+    let doc = this;
     doc.ranking.forEach((rank) => {
         if (typeof rank.position !== "number"){
-            rank.position = doc.ranking.length - 1;
+            rank.position = doc.playerCount - 1;
         }
     });
     next();

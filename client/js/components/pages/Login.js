@@ -1,7 +1,6 @@
 import React from 'react';
 import Dialog from '../templates/Dialog';
 import LoginAccount from '../organisms/LoginAccount';
-import {session} from '../../services/Session';
 import {Redirect} from 'react-router-dom';
 
 
@@ -14,8 +13,7 @@ class Registration extends React.Component {
         };
     }
 
-    onLogin(value) {
-        session.set("token", value);
+    onLogin() {
         this.setState({ redirectToReferrer: true });
     };
 
@@ -26,6 +24,7 @@ class Registration extends React.Component {
         const { redirectToReferrer } = this.state;
 
         if (redirectToReferrer) {
+            console.log(from);
             return (
                 <Redirect to={from}/>
             )

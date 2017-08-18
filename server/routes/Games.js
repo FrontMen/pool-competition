@@ -14,26 +14,22 @@ module.exports = function(router) {
                     title: req.body.title,
                     creator: req.session.userId,
                     expiration: req.body.expiration || moment().add(1, "y").valueOf()
-                }, function(err){
-                    console.log(err);
+                }, function(err, doc){
+                    console.log(doc);
+                    res.status(200).send(doc.toObject());
                 });
-                res.status(200).send();
+
             }
         });
     });
     router.get('/games', auth.user, function(req, res) {
-        Games.find({}).populate('creator', 'username').lean().exec(function(err, games){
-            res.status(200).send(games.map(game => {
-                let response = Object.assign({}, game);
-                response.totalMembers = response.ranking.length;
-                delete response.ranking;
-                return response;
-            }));
+        Games.find({}).populate('creator', 'username').exec(function(err, games){
+            res.status(200).send(games.map(game => game.toObject()));
         });
     });
 
-    router.get('/games/:title', auth.user, function(req, res) {
-        Games.findOne({ title: req.params.title })
+    router.get('/games/:id', auth.user, function(req, res) {
+        Games.findById(req.params.id)
             .populate('creator', 'username')
             .populate('ranking', 'username position').exec(function(err, game){
                 console.log(game);
@@ -47,26 +43,26 @@ module.exports = function(router) {
         })
     });
 
-    router.post('/games/:title/join', auth.user, function(req,res){
-        Games.findOne({ title: req.params.title}, (err, game) => {
+    router.post('/games/:id/ranking', auth.user, function(req,res){
+        Games.findById(req.params.id, (err, game) => {
             game.ranking.push({ user: req.session.userId });
             game.save(() => {
                 res.status(200).send();
             });
         });
     });
-    router.post('games/:title/challenge/:user', auth.user, function(req,res){
-        // TODO challenge another person from this competition
+    router.post('games/:id/challenge/:user', auth.user, function(req,res){
+        // TODO challenge another person from this competition1
         // Payload should contain the challenged person.
     });
 
-    router.post('games/:title/challenge/:challengeId', function(req,res){
+    router.post('games/:id/challenge/:challengeId', function(req,res){
         // TODO resolve a challenge with a winning user
         // The winner/loser will swap position if the winner has a lower ranking
     });
 
-    router.delete('/games/:title', auth.user, function(req, res) {
-        Games.findOne({title: req.params.title}, function(err, user){
+    router.delete('/games/:id', auth.user, function(req, res) {
+        Games.findById(req.params.id, function(err, user){
             if (bcrypt.compareSync(req.body.password, user.password)) {
                 User.remove({ username: req.session.username }, function(){
                     res.send(204);

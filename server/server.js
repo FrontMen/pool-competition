@@ -10,10 +10,11 @@ const app = express(),
 
 app.use(session({
         cookie: {
-            secure: false
+            secure: false,
+            httpOnly: false
         },
         secret: expressSessionSecret,
-        resave: true,
+        resave: false,
         name: "poolCompetition",
         saveUninitialized: true,
         rolling: true
@@ -26,13 +27,13 @@ mongoose.connect('mongodb://localhost:27017/poolcompetition', { useMongoClient: 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, Accept, Access-Control-Allow-Origin");
+    res.header("Access-Control-Allow-Origin", "http://justus.local.nl:8080");
+    res.header("Access-Control-Allow-Headers", "Origin, Accept, Content-Type, Access-Control-Allow-Origin");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
 app.options("/*", function(req, res){
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin, Origin, Accept, Content-Type, Authorization, Content-Length, X-Requested-With');
     res.status(200).send();
 });

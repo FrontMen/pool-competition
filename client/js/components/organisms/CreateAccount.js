@@ -5,9 +5,8 @@ import Password from '../../config/forms/Password';
 import Header from '../atoms/Header';
 import FormField from '../molecules/FormField';
 import Button from '../atoms/Button';
-import StatusCodes from '../../helpers/StatusCodes';
+import PoolApi from '../../services/PoolApi';
 
-import xhr from "xhr";
 
 class CreateAccount extends React.Component {
     constructor() {
@@ -43,18 +42,12 @@ class CreateAccount extends React.Component {
         if (!fields.some(field => this.state.fields[field].error)) {
             console.log("VALID FORM");
 
-            xhr.post('http://localhost:3000/api/users', {
-                // headers: {
-                //     "Access-Control-Allow-Origin": "*"
-                // },
-                json: true,
-                body: {
-                    username: this.state.fields.username.value,
-                    email: this.state.fields.email.value,
-                    password: this.state.fields.password.value,
-                }
-            }, (err, resp, data) => {
-                if (StatusCodes.happy(resp.statusCode)){
+            PoolApi.createUser({
+                username: this.state.fields.username.value,
+                email: this.state.fields.email.value,
+                password: this.state.fields.password.value,
+            }).then((resp, data) => {
+                if (resp.ok){
                     this.props.onCreate && this.props.onCreate();
                 } else if (data && data.description){
                     console.log(data.description);

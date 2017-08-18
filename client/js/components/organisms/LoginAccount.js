@@ -4,12 +4,11 @@ import Paragraph from '../atoms/Paragraph';
 import Header from '../atoms/Header';
 import Button from '../atoms/Button';
 import FormField from '../molecules/FormField';
-import xhr from "xhr";
+import PoolApi from '../../services/PoolApi';
 
 import Username from '../../config/forms/Username';
 import Password from '../../config/forms/Password';
 import RememberMe from '../../config/forms/RememberMe';
-import StatusCodes from '../../helpers/StatusCodes';
 
 class SelectAccount extends React.Component {
     constructor() {
@@ -40,25 +39,15 @@ class SelectAccount extends React.Component {
         this.setState({ showErrors: true });
         let fields = Object.keys(this.state.fields);
         if (!fields.some(field => this.state.fields[field].error)) {
-            xhr.post('http://localhost:3000/api/login', {
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                },
-                json: true,
-                body: {
-                    username: this.state.fields.username.value,
-                    password: this.state.fields.password.value,
-                    remember: this.state.fields.rememberMe.value,
-                }
-            }, (err, resp, data) => {
-                if (StatusCodes.happy(resp.statusCode)){
+            PoolApi.login({
+                username: this.state.fields.username.value,
+                password: this.state.fields.password.value,
+                remember: this.state.fields.rememberMe.value
+            }).then(resp => {
+                if (resp.ok)
                     this.props.onLogin && this.props.onLogin();
-                } else if (data && data.description){
-                    console.log(data.description);
-                }
             });
         }
-        // TODO perform XHR login request. Redirect to home if succesful. Handle errors.
     }
 
     render() {

@@ -13,7 +13,7 @@ class Loading extends React.Component {
         return (
             <div className="pag__loading">
                 <Dialog>
-                    <Paragraph>Hold on...</Paragraph>
+                    <Paragraph type="info">Hold on...</Paragraph>
                 </Dialog>
             </div>
 

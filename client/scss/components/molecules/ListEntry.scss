@@ -1,0 +1,11 @@
+.mol__list-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $size-small;
+    background: linear-gradient(to bottom,
+            $color-brand-darkest,
+            darken($color-brand-darkest, 5%)
+    );
+    cursor: pointer;
+}

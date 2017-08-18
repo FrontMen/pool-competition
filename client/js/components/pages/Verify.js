@@ -14,7 +14,7 @@ class Registration extends React.Component {
         this.verify();
     }
     verify(){
-        xhr("/api/is-user", function(err, resp){
+        xhr("http://127.0.0.1/api/is-user", function(err, resp){
             this.setState({verified: StatusCodes.happy(resp.statusCode) });
         }.bind(this));
     }

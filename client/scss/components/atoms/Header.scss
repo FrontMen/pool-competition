@@ -15,4 +15,12 @@
         font-size: $font-size * 1.25;
         color: #fff;
     }
+
+    &--h4 {
+        font-size: $font-size;
+    }
+
+    &--h5 {
+        font-size: $font-size * 0.75;
+    }
 }

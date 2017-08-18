@@ -26,6 +26,7 @@ module.exports = {
         hot: true, // Tell the dev-server we're using HMR
         contentBase: path.resolve(__dirname, 'dist'),
         publicPath: '/',
+        allowedHosts: ['justus.local.nl'],
         historyApiFallback: true
     },
     module: {

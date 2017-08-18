@@ -7,7 +7,15 @@
 
     &--error {
         background-color: $color-error;
-        padding: $size-tiny;
+        border: 2px solid $color-edge;
+        padding: $size-small;
         text-align: center;
+    }
+
+    &--info {
+        text-align: center;
+        border: 2px solid $color-edge;
+        padding: $size-small;
+        background-color: $color-info;
     }
 }
